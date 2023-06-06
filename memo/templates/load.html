@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block container %}
+<header class="bg-dark text-light" style="height:110px;">
+    <h1 class="ms-3 pt-3">MiniMemo+</h1>
+    <nav class="nav justify-content-end">
+        <a class="btn btn-dark" href="../.." role="button" style="width:72px">New</a>
+    </nav>
+</header>
+
+
+
+<main  style="min-height: calc(100vh - 220px);">
+    
+    <table class="table table-striped">
+        <thead>
+            <tr><th style = "width:70%">Memo</th><th style = "width:15%">Date</th><th style = "width:15%">Button</th></tr>
+        </thead>
+        <tbody>
+            {% for post in posts %}
+                <tr><td style = "width:70%">{{post.memo}}</td><td style = "width:15%">{{post.date}}</td>
+                    <td style = "width:15%">
+                        <form method="post" action="{% url 'edit' post.pk %}" style="display:inline-block;">
+                        {% csrf_token %}
+                            <button type="submit" class="btn btn-dark" style="width:72px">Open</button>
+                        </form>
+                        <form method="post" action="{% url 'delete' post.pk %}" style="display:inline-block;">
+                        {% csrf_token %}
+                            <button type="submit" onclick="return confirm('削除しますか？')" class="btn btn-dark" style="width:72px">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</main>
+
+{% endblock %}

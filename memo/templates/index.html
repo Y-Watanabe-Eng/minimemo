@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block container %}
+<header class="bg-dark text-light" style="height:110px;">
+    <h1 class="ms-3 pt-3">MiniMemo+</h1>
+    <nav class="nav justify-content-end">
+        <a class="btn btn-dark" href="/load" role="button" style="width:72px">Load</a>
+    </nav>
+</header>
+
+
+
+<main style="min-height: calc(100vh - 220px);">
+    <form action="/" method="POST" style="min-height: calc(100vh - 220px);">
+    {% csrf_token %}
+        <div class="form-floating">
+            <textarea class="form-control" placeholder="memo" id="floatingTextarea2" style="min-height: calc(100vh - 258px);" type="text" name="memo"></textarea>
+            <label for="floatingTextarea2">New Memo</label>
+        </div>
+        <div class="text-end">
+            <button type="submit" class="btn btn-dark" style="width:72px">Save</button>
+        </div>
+    </form>
+</main>
+
+{% endblock %}

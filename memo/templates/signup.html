@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block container %}
+<header class="bg-dark text-light" style="height:110px;">
+    <h1 class="ms-3 pt-3">MiniMemo+</h1>
+    <nav class="nav justify-content-end">
+        <a class="btn btn-dark" href="/login" role="button" style="width:72px">Login</a>
+    </nav>
+</header>
+
+
+
+<main style="min-height: calc(100vh - 220px);">
+    <form action="/signup" method="POST" style="min-height: calc(100vh - 220px);">
+        <div class="border border-dark rounded m-4">
+            <div class="m-4">
+                <h4>ユーザ登録</h4>
+                <div class="form-floating mb-3">
+                    <input type="text" name="user_id" class="form-control" id="floatingUser" placeholder="UserID">
+                    <label for="floatingUser">UserID</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password">
+                    <label for="floatingPassword">Password</label>
+                </div>
+                <p class="mx-1 my-0"></p>
+                <p class="mx-1 my-0"></p>
+                <p class="mx-1 my-0"></p>
+                <div class="text-end">
+                    <button type="submit" class="btn btn-dark" style="width:72px">Signup</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</main>
+
+{% endblock %}
