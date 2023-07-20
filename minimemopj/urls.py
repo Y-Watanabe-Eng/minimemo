@@ -1,9 +1,10 @@
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from memo.views import (IndexClass,
                         LoadClass,
                         EditClass,
-                        delete)
+                        delete,)
+
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -11,5 +12,5 @@ urlpatterns = [
     path("load/", LoadClass.as_view(), name="load"),
     path("edit/<uuid:pk>/", EditClass.as_view(), name="edit"),
     path("delete/<uuid:pk>/", delete, name="delete"),
-    #path("signup/", SignupClass, name="signup")
+    path('authentication/', include('authentication.urls')),
 ]

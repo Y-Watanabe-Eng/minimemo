@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block container %}
+<header class="bg-dark text-light" style="height:110px;">
+    <h1 class="ms-3 pt-3">MiniMemo</h1>
+    <nav class="nav justify-content-end">
+        <a class="btn btn-dark" href="/authentication/signup/" role="button" style="width:72px">Signup</a>
+    </nav>
+</header>
+
+
+
+<main style="min-height: calc(100vh - 220px);">
+    <form action="{% url 'authentication:login' %}" method="POST" style="min-height: calc(100vh - 220px);">
+        {% csrf_token %}
+        {% if form.errors %}
+            <div class="alert alert-danger">
+                <ul>
+                    {% for field_name, field_errors in form.errors.items %}
+                        {% for error in field_errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+        <div class="border border-dark rounded m-4">
+            <div class="m-4">
+                <h4>ユーザログイン</h4>
+                <div class="form-floating mb-3">
+                    <input type="text" name="username" class="form-control" id="floatingUser" required>
+                    <label for="floatingUser">Username</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="password" name="password" class="form-control" id="floatingPassword" required>
+                    <label for="floatingPassword">Password</label>
+                </div>
+                <div class="text-end">
+                    <button type="submit" class="btn btn-dark" style="width:72px">Login</button>
+                </div>
+            </div>
+        </div>        
+    </form>
+</main>
+
+{% endblock %}

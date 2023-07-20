@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block container %}
+<header class="bg-dark text-light" style="height:110px;">
+    <h1 class="ms-3 pt-3">MiniMemo</h1>
+    <nav class="nav justify-content-end">
+        <a class="btn btn-dark" href="/authentication/login/" role="button" style="width:72px">Login</a>
+    </nav>
+</header>
+
+
+
+<main style="min-height: calc(100vh - 220px);">
+    <form action="{% url 'authentication:signup' %}" method="POST" style="min-height: calc(100vh - 220px);">
+        {% csrf_token %}
+        <!--
+        {{ form.as_p }}
+         -->
+        {% if form.errors %}
+        <div class="alert alert-danger">
+            <ul>
+                {% for field in form %}
+                    {% if field.errors %}
+                        {% for error in field.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+        <div class="border border-dark rounded m-4">
+            <div class="m-4">
+                <h4>ユーザ登録</h4>
+                <div class="form-floating mb-3">
+                    <input type="text" name="username" class="form-control" id="floatingUser">
+                    <label for="floatingUser">Username</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="password" name="password1" class="form-control" id="floatingPassword">
+                    <label for="floatingPassword">Password</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="password" name="password2" class="form-control" id="floatingConfirmPassword">
+                    <label for="floatingConfirmPassword">Password(確認用)</label>
+                </div>
+                <li class="mx-1 my-0" style="font-size: 12px;">パスワードは最低 8 文字以上必要です。</li>
+                <li class="mx-1 my-0" style="font-size: 12px;">数字だけのパスワードにはできません。</li>
+                <div class="text-end">
+                    <button type="submit" class="btn btn-dark" style="width:72px">Signup</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</main>
+
+{% endblock %}
+

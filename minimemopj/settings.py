@@ -9,7 +9,7 @@ env = environ.Env(
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = os.path.dirname(os.path.dirname(os.fspath(__file__)))
 
-environ.Env.read_env(os.path.join(BASE_DIR, '.env.prod'))
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
 # SECURITY WARNING
 SECRET_KEY = env('SECRET_KEY')
@@ -19,13 +19,14 @@ ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
 # Application definition
 
 INSTALLED_APPS = [
+    "authentication",
+    "memo",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "memo",
 ]
 
 MIDDLEWARE = [
@@ -62,23 +63,9 @@ WSGI_APPLICATION = "minimemopj.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-"""
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": "minimemodb",
-        "USER": "postgres",
-        "PASSWORD": "you62111",
-        "HOST": "localhost",
-        "PORT": "",
-    }
-}
-"""
-
 DATABASES = {
     "default": env.db(),
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -121,3 +108,13 @@ STATIC_ROOT = "/usr/share/nginx/html/static"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+AUTH_USER_MODEL = 'authentication.CustomUser'
+
+ACCOUNT_FORMS = {
+    'signup': 'authentication.forms.SignupForm'
+}
+
+ACCOUNT_ADAPTER = 'authentication.adapter.AccountAdapter'
+
+LOGIN_URL = 'authentication:login'

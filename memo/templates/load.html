@@ -5,6 +5,7 @@
     <h1 class="ms-3 pt-3">MiniMemo</h1>
     <nav class="nav justify-content-end">
         <a class="btn btn-dark" href="../.." role="button" style="width:72px">New</a>
+        <a class="btn btn-dark" href="{% url 'authentication:logout' %}" role="button" style="width:72px">Logout</a>
     </nav>
 </header>
 
@@ -14,12 +15,12 @@
     
     <table class="table table-striped">
         <thead>
-            <tr><th style = "width:70%">Memo</th><th style = "width:15%">Date</th><th style = "width:15%">Button</th></tr>
+            <tr><th style = "width:60%">Memo</th><th style = "width:20%">Date</th><th style = "width:20%">Button</th></tr>
         </thead>
         <tbody>
             {% for post in posts %}
-                <tr><td style = "width:70%">{{post.memo}}</td><td style = "width:15%">{{post.date}}</td>
-                    <td style = "width:15%">
+                <tr><td style = "width:60%">{{post.memo}}</td><td style = "width:20%">{{post.date}}</td>
+                    <td style = "width:20%" align="center">
                         <form method="post" action="{% url 'edit' post.pk %}" style="display:inline-block;">
                         {% csrf_token %}
                             <button type="submit" class="btn btn-dark" style="width:72px">Open</button>
