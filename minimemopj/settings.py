@@ -2,14 +2,22 @@ from pathlib import Path
 import environ
 import os
 
+# Build paths inside the project like this: BASE_DIR / 'subdir'.
+BASE_DIR = os.path.dirname(os.path.dirname(os.fspath(__file__)))
+
+STATIC_DIR = os.path.join(BASE_DIR, "static")
+
+STATIC_URL = 'static'
+
+STATICFILES_DIRS = [
+    STATIC_DIR,
+]
+
 env = environ.Env(
     DEBUG = (bool, False)
 )
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = os.path.dirname(os.path.dirname(os.fspath(__file__)))
-
-environ.Env.read_env(os.path.join(BASE_DIR, '.env.prod'))
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
 # SECURITY WARNING
 SECRET_KEY = env('SECRET_KEY')
@@ -44,7 +52,7 @@ ROOT_URLCONF = "minimemopj.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [os.path.join(BASE_DIR, 'templates')],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -118,3 +126,5 @@ ACCOUNT_FORMS = {
 ACCOUNT_ADAPTER = 'authentication.adapter.AccountAdapter'
 
 LOGIN_URL = 'authentication:login'
+
+SESSION_SAVE_EVERY_REQUEST = True
