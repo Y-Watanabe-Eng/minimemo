@@ -17,7 +17,7 @@ env = environ.Env(
     DEBUG = (bool, False)
 )
 
-environ.Env.read_env(os.path.join(BASE_DIR, '.env.prod'))
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
 # SECURITY WARNING
 SECRET_KEY = env('SECRET_KEY')
