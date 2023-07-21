@@ -17,7 +17,7 @@ env = environ.Env(
     DEBUG = (bool, False)
 )
 
-environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
+environ.Env.read_env(os.path.join(BASE_DIR, '.env.prod'))
 
 # SECURITY WARNING
 SECRET_KEY = env('SECRET_KEY')
@@ -128,3 +128,5 @@ ACCOUNT_ADAPTER = 'authentication.adapter.AccountAdapter'
 LOGIN_URL = 'authentication:login'
 
 SESSION_SAVE_EVERY_REQUEST = True
+
+CSRF_TRUSTED_ORIGINS = ['https://yw-app.net']
