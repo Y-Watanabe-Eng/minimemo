@@ -23,6 +23,7 @@ class LoadClass(LoginRequiredMixin, ListView):
     template_name = "load.html"
     model = Post
     context_object_name = 'posts'
+    ordering = ['-date']
 
     def get_queryset(self):
         queryset = super().get_queryset()
