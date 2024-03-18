@@ -110,7 +110,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = "/static/"
-STATIC_ROOT = "/usr/share/nginx/html/static"
+STATIC_ROOT = "/var/www/html/static"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -129,4 +129,4 @@ LOGIN_URL = 'authentication:login'
 
 SESSION_SAVE_EVERY_REQUEST = True
 
-CSRF_TRUSTED_ORIGINS = ['https://yw-app.net']
+CSRF_TRUSTED_ORIGINS = ['https://minimemo.web-prod.net']
